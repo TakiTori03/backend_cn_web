@@ -1,0 +1,96 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: Ecommerce-backend
+
+    #config mysql8
+  datasource:
+    # driver-class-name: com.mysql.cj.jdbc.Driver
+
+    #local host
+    # url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/ecommerce?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    # username: ${MYSQL_ROOT_USERNAME:root}
+    # password: ${MYSQL_ROOT_PASSWORD:root}
+
+    #connect clever cloud
+    # url: jdbc:mysql://ba8kscdmvjs5s9yh14cp-mysql.services.clever-cloud.com:3306/ba8kscdmvjs5s9yh14cp?useSSL=false&serverTimezone=UTC
+    # username: ucmrrgq4zdiuyzbm
+    # password: 86OuPeXSug7W3EGi1d2l
+
+    #connect to MySQL AWS RDS
+    url: jdbc:mysql://electronicweb.cjia2m4808pw.ap-southeast-1.rds.amazonaws.com:3306/electronicweb
+    username: admin
+    password: Linh1132003
+  #hibernate jpa
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+  #upload
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB # Maximum file size
+      max-request-size: 10MB # Maximum request size
+
+  #mail
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: takidev0705@gmail.com
+    password: wgkq giha fycu gnud
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  #source
+  messages:
+    basename: i18n/messages
+
+api:
+  prefix: /api
+
+#cloudinary
+cloudinary:
+  cloud_name: dgjrkjkch
+  api_key: 117489847957392
+  api_secret: wGy6bXdWsLEByD3NNiSSEMhSFlg
+
+#payment
+payment:
+  vnPay:
+    url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+    tmnCode: B0G7MQOH
+    secretKey: MUQDZO18PYW9GLBHMISDS442I9SARIHT
+    returnUrl: http://localhost:${server.port}/client-api/orders/confirm
+    version: 2.1.0
+    command: pay
+    orderType: other
+    timeout: 15 #in minute
+
+domain:
+  protocol: http://localhost:${server.port}
+  front_end_protocol: http://localhost:3000
+
+#jwt
+jwt:
+  expiration-token: 86400 # 1 day =  24 * 60 * 60
+  expiration-refresh-token: 172800 # 2 days = 2 * 24 * 60 * 60
+  base64-secret: ZjMzMDNkMzMzMzBhNDE5NDZkN2FjNTkxMjE5M2IzMmI1ZThkMDFkNzQzNTNmZDZhYTc0Zjk4Mzg1MmViYTkyYTdmYzI3NDk3NDBhZDU2MzRjNGExYmQyZTg4OGZjMzk1Yzc0M2YwODI5MDJlMWM1Y2EyN2Q3MzY2NmJiODNlNzI=
+# swagger-ui custom path
+# springdoc:
+#   swagger-ui:
+#     path: /swagger-ui.html
+#     tryItOutEnabled: true
+#     filter: true
+#     api-docs:
+#       path: /api-docs
